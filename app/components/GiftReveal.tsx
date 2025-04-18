@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface GiftRevealProps {
-  giftImageSrc: StaticImageData;
+  giftImageSrc: string;
   isReadyToReveal: boolean;
   onReveal: () => void;
 }
@@ -65,7 +65,7 @@ export default function GiftReveal({ giftImageSrc, isReadyToReveal, onReveal }: 
                     ${
                       isReadyToReveal
                         ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white cursor-pointer"
-                        : "bg-gradient-to-r from-pink-200 to-purple-200 text-gray-700 cursor-not-allowed"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }`}
           whileHover={isReadyToReveal ? { scale: 1.05 } : {}}
           whileTap={isReadyToReveal ? { scale: 0.95 } : {}}

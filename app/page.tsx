@@ -1,34 +1,46 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import Background from "./components/Background";
-import DecorativeElements from "./components/DecorativeElements";
-import Countdown from "./components/Countdown";
-import GiftReveal from "./components/GiftReveal";
+import Link from "next/link";
+import Background from "@/components/Background";
+import DecorativeElements from "@/components/DecorativeElements";
 
-import giftImage from "@/public/gift1.png";
+interface GiftItem {
+  id: string;
+  name: string;
+  description: string;
+  emoji: string;
+  date: string;
+  href?: string;
+}
 
 export default function Home() {
-  // Replace with your target date for the countdown
-  const targetDate = new Date("2025-04-18T00:00:00");
-
-  // State to track if countdown is completed
-  const [isCountdownComplete, setIsCountdownComplete] = useState(false);
-
-  // For development purposes, you can set this to true to simulate countdown completion
-  // const [isCountdownComplete, setIsCountdownComplete] = useState(true);
-
-  // Handle countdown completion
-  const handleCountdownComplete = () => {
-    setIsCountdownComplete(true);
-  };
-
-  // Handle gift reveal
-  const handleRevealGift = () => {
-    // You can add any additional actions to perform when the gift is revealed
-    console.log("Gift revealed!");
-  };
+  const gifts: GiftItem[] = [
+    {
+      id: "gift1",
+      name: "Regalo Especial #1",
+      description: "Tu primer regalo sorpresa...",
+      emoji: "🎁",
+      date: "17 de Abril del 2025, a las 9:00 pm",
+      href: "17"
+    },
+    {
+      id: "gift2",
+      name: "Regalo Especial #2",
+      description: "Algo que habías perdido...",
+      emoji: "💝",
+      date: "21 de Abril del 2025, a las 9:00 pm",
+      href: "21"
+    },
+    {
+      id: "gift3",
+      name: "Regalo Especial #3",
+      description: "Un momento inolvidable...",
+      emoji: "✨",
+      date: "23 de Abril del 2025, a las 11:11 am",
+      href: "23"
+    }
+  ];
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-10 px-4">
@@ -46,28 +58,54 @@ export default function Home() {
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
           >
-            ¡Sorpresa Especial!
+            ¡Sorpresas Especiales!
           </motion.h1>
+          <p className="text-xl md:text-2xl text-gray-700 mb-6">Una colección de regalos solo para ti</p>
         </motion.div>
 
-        {/* Countdown section */}
-        <motion.div className="w-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
-          <h2 className="text-xl md:text-2xl text-center mb-6 text-gray-700 font-bold">Tu regalo estará disponible en:</h2>
-          <Countdown targetDate={targetDate} onComplete={handleCountdownComplete} />
-        </motion.div>
-
-        {/* Gift section */}
-        <motion.div className="w-full" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
-          <GiftReveal giftImageSrc={giftImage} isReadyToReveal={isCountdownComplete} onReveal={handleRevealGift} />
-        </motion.div>
-        <motion.div className="w-full" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
-          <div className="p-4 text-center">
-            <p className="text-sm text-gray-700 font-semibold">Pista</p>
-            <p className="text-base md:text-xl text-gray-700">
-              Ya que el 2 y el 3 son tus números favoritos... <br /> 😌✨
-            </p>
-          </div>
-        </motion.div>
+        {/* Gifts Grid */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {gifts.map((gift, index) => (
+            <motion.div
+              key={gift.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 + index * 0.1 }}
+            >
+              <Link href={`/${gift.href ?? gift.id}`} className="block">
+                <motion.div
+                  className="bg-white bg-opacity-40 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-pink-100"
+                  whileHover={{
+                    scale: 1.03,
+                    boxShadow: "0 10px 25px -5px rgba(236, 72, 153, 0.1), 0 10px 10px -5px rgba(236, 72, 153, 0.04)",
+                    borderColor: "rgba(236, 72, 153, 0.5)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center mb-4">
+                    <span className="text-4xl mr-3">{gift.emoji}</span>
+                    <h2 className="text-xl font-bold text-gray-800">{gift.name}</h2>
+                  </div>
+                  <p className="text-gray-600 mb-3">{gift.description}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-purple-600 font-medium">{gift.date}</span>
+                    <motion.div
+                      className="text-pink-500"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        duration: 1
+                      }}
+                    >
+                      →
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </main>
   );
