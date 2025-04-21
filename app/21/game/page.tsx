@@ -14,11 +14,11 @@ import PirateMapBackground from "@/app/components/PirateMapBackground";
 import TreasureOpenImg from "@/public/images/final.png";
 
 export default function TreasureHuntGame() {
-  const [currentLevel, setCurrentLevel] = useState(6);
+  const [currentLevel, setCurrentLevel] = useState(0);
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(true);
-  const [showGameComplete, setShowGameComplete] = useState(true);
+  const [success, setSuccess] = useState(false);
+  const [showGameComplete, setShowGameComplete] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
