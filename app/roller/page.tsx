@@ -35,6 +35,9 @@ export default function RollerCoasterInvitation() {
       </div>
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12 relative z-10">
+        <h1 className="text-5xl font-bold mb-6 text-pink-100 drop-shadow-lg block md:hidden text-shadow-lg text-shadow-pink-500/50">
+          ¡Nos vamos al Parque de Atracciones!
+        </h1>
         <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 max-w-6xl mx-auto -translate-y-2 md:translate-y-0">
           {/* Left Side - Invitation Text */}
           <motion.div
