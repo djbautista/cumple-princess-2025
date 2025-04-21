@@ -15,7 +15,7 @@ export default function SuccessEffect() {
   const randomPhrase = celebrationPhrases[Math.floor(Math.random() * celebrationPhrases.length)];
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-90">
       {/* Confetti pieces */}
       {[...Array(30)].map((_, i) => {
         const size = Math.random() * 10 + 5;

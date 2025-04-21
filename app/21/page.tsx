@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 export default function Gift23() {
   const router = useRouter();
   // Replace with your target date for the countdown
-  const targetDate = new Date("2025-04-20T21:00:00");
+  const targetDate = new Date("2025-04-20T22:15:00");
 
   // State to track if countdown is completed
   const [isCountdownComplete, setIsCountdownComplete] = useState(false);
