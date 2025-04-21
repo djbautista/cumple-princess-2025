@@ -5,7 +5,7 @@ import ColdHot from "@/public/images/cold-hot.png";
 import Chelsea from "@/public/images/chelsea.png";
 import Dancing from "@/public/images/dancing.png";
 import TreasureMap from "@/public/images/treasure-map.png";
-
+import Rosa from "@/public/images/rosa.jpg";
 interface Level {
   hint?: string;
   hintTitle?: string;
@@ -22,7 +22,8 @@ export const levels: Level[] = [
   },
   {
     hintTitle: "Muy bien, avanzamos a la siguiente pista",
-    hint: "Ay donde no te las pongas al despertar y tu mamá te vea...",
+    hint: "Recuerda lo mucho que te amo...",
+    hintImage: Rosa,
     nextLevelKey: "1234"
   },
   {
@@ -33,7 +34,7 @@ export const levels: Level[] = [
   },
   {
     hintTitle: "Muy bien, avanzamos a la siguiente pista",
-    hint: "Me usas cada día para estar reluciente, pero si me fallas, hueles diferente.",
+    hint: "Me usas cada día para estar suavecita, pero si me fallas, pierdes la visita (necesitaba que rimara).",
     nextLevelKey: "2222"
   },
   {
