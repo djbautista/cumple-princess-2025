@@ -7,11 +7,14 @@ import DecorativeElements from "@/components/DecorativeElements";
 import Countdown from "@/components/Countdown";
 import GiftReveal from "@/components/GiftReveal";
 
-import giftImage from "@/public/gift1.png";
+import giftImage from "@/public/images/cold-hot.png";
+
+import { useRouter } from "next/navigation";
 
 export default function Gift23() {
+  const router = useRouter();
   // Replace with your target date for the countdown
-  const targetDate = new Date("2025-04-21T21:00:00");
+  const targetDate = new Date("2025-04-20T21:00:00");
 
   // State to track if countdown is completed
   const [isCountdownComplete, setIsCountdownComplete] = useState(false);
@@ -26,8 +29,7 @@ export default function Gift23() {
 
   // Handle gift reveal
   const handleRevealGift = () => {
-    // You can add any additional actions to perform when the gift is revealed
-    console.log("Gift revealed!");
+    router.push("/21/game");
   };
 
   return (
